@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import TestRouteComponent from './components/TestRouteComponent.tsx';
-import HomeRouteComponent from './components/HomeRouteComponent.tsx';
+import Dashboard from './components/Dashboard.tsx';
+import SignIn from './components/SignIn.tsx';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" Component={HomeRouteComponent} />
-        <Route path="/abc" Component={TestRouteComponent} />
+        <Route path="/" Component={Dashboard} />
+        <Route path="/login" Component={SignIn} />
       </Routes>
     </BrowserRouter>
   );
