@@ -1,10 +1,10 @@
 import { Text, Card, Flex, Heading, TextField, Button, Container } from '@radix-ui/themes';
 import { useSelector } from 'react-redux';
-import { signInAction } from '../store/thunk/authThunk.ts';
-import { RootState, useAppDispatch } from '../store';
+import { signInAction } from '../../store/thunk/authThunk.ts';
+import { RootState, useAppDispatch } from '../../store';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect } from 'react';
-import { resetToast, triggerToast } from '../store/slice/toastSlice.ts';
+import { resetToast, triggerToast } from '../../store/slice/toastSlice.ts';
 
 type Inputs = {
   username: string;

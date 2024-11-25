@@ -1,6 +1,6 @@
 import { Flex, Text, Button } from '@radix-ui/themes';
-import { signOutAction } from '../store/thunk/authThunk.ts';
-import { useAppDispatch } from '../store';
+import { signOutAction } from '../../store/thunk/authThunk.ts';
+import { useAppDispatch } from '../../store';
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
