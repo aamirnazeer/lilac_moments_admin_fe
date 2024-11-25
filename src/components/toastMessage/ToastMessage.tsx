@@ -1,5 +1,5 @@
 import * as Toast from '@radix-ui/react-toast';
-import styles from '../authWrapper/styles.module.css';
+import styles from './styles.module.css';
 import { Cross1Icon } from '@radix-ui/react-icons';
 import { Avatar } from '@radix-ui/themes';
 import { resetToast } from '../../store/slice/toastSlice.ts';
