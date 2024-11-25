@@ -7,20 +7,18 @@ import ToastMessage, { ToastType } from './Toast.tsx';
 
 export const WrapperComponent = ({ children }: { children: ReactNode }) => {
   const dispatch = useAppDispatch();
-  const { loading, loggedIn } = useSelector((state: RootState) => state.authSlice);
+  const { loggedIn, currentUserLoading } = useSelector((state: RootState) => state.authSlice);
   const { open, type, message } = useSelector((state: RootState) => state.toastSlice);
 
   useEffect(() => {
     dispatch(currentUserAction());
   }, [dispatch]);
 
-  if (loading) return;
-
   return (
-    <>
-      {!loggedIn && <SignIn />}
+    <div style={{ padding: '8px' }}>
+      {!loggedIn && !currentUserLoading && <SignIn />}
       {loggedIn && children}
       <ToastMessage open={open} type={type as ToastType['type']} message={message} />
-    </>
+    </div>
   );
 };

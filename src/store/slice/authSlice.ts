@@ -1,7 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { currentUserAction, signInAction, signOutAction } from '../thunk/authThunk.ts';
 
-const initialStatue = { loading: false, error: false, errorMessage: '', loggedIn: false, currentUser: {} };
+const initialStatue = {
+  loading: false,
+  error: false,
+  errorMessage: '',
+  loggedIn: false,
+  currentUser: {},
+  currentUserLoading: false,
+};
 
 const authSlice = createSlice({
   initialState: initialStatue,
@@ -26,17 +33,17 @@ const authSlice = createSlice({
         state.loggedIn = false;
       })
       .addCase(currentUserAction.pending, (state) => {
-        state.loading = true;
+        state.currentUserLoading = true;
         state.errorMessage = '';
       })
       .addCase(currentUserAction.fulfilled, (state, { payload }) => {
-        state.loading = false;
+        state.currentUserLoading = false;
         state.errorMessage = '';
         state.loggedIn = true;
         state.currentUser = payload.currentUser;
       })
       .addCase(currentUserAction.rejected, (state, { payload }) => {
-        state.loading = false;
+        state.currentUserLoading = false;
         state.error = true;
         state.errorMessage = payload as string;
       })

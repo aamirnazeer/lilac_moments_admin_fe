@@ -2,7 +2,7 @@ import { Text, Card, Flex, Heading, TextField, Button, Container } from '@radix-
 import { useSelector } from 'react-redux';
 import { signInAction } from '../store/thunk/authThunk.ts';
 import { RootState, useAppDispatch } from '../store';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import { resetToast, triggerToast } from '../store/slice/toastSlice.ts';
 
@@ -24,14 +24,14 @@ export default function SignIn() {
     };
   }, [error, errorMessage, dispatch]);
 
-  const submitHandler: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
     dispatch(signInAction(data));
   };
 
   return (
     <Container size="1">
       <Card size="4">
-        <form onSubmit={handleSubmit(submitHandler)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Flex direction="column" gap="4">
             <Heading>Sign In</Heading>
             <Flex direction="column" gap="1">

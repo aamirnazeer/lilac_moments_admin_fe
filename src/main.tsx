@@ -8,10 +8,10 @@ import store from './store';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Provider store={store}>
-      <Theme accentColor="iris">
+    <Theme accentColor="iris">
+      <Provider store={store}>
         <App />
-      </Theme>
-    </Provider>
+      </Provider>
+    </Theme>
   </StrictMode>
 );
