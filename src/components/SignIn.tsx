@@ -1,30 +1,69 @@
 import { Text, Card, Flex, Heading, TextField, Button, Container } from '@radix-ui/themes';
-import { API, ENV } from '../core/env.ts';
+import { useSelector } from 'react-redux';
+import { signInAction } from '../store/thunk/authThunk.ts';
+import { RootState, useAppDispatch } from '../store';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useEffect } from 'react';
+import { resetToast, triggerToast } from '../store/slice/toastSlice.ts';
 
-console.log(API, ENV);
+type Inputs = {
+  username: string;
+  password: string;
+};
 
 export default function SignIn() {
+  const dispatch = useAppDispatch();
+  const { register, handleSubmit } = useForm<Inputs>();
+
+  const { loading, error, errorMessage } = useSelector((state: RootState) => state.authSlice);
+
+  useEffect(() => {
+    if (error && errorMessage) dispatch(triggerToast({ open: true, type: 'error', message: errorMessage }));
+    return () => {
+      dispatch(resetToast());
+    };
+  }, [error, errorMessage, dispatch]);
+
+  const submitHandler: SubmitHandler<Inputs> = (data) => {
+    dispatch(signInAction(data));
+  };
+
   return (
     <Container size="1">
       <Card size="4">
-        <Flex direction="column" gap="4">
-          <Heading>Sign In</Heading>
-          <Flex direction="column" gap="1">
-            <Text as="label" htmlFor="username" weight="bold">
-              Username
-            </Text>
-            <TextField.Root placeholder="Enter your username" id="username" />
+        <form onSubmit={handleSubmit(submitHandler)}>
+          <Flex direction="column" gap="4">
+            <Heading>Sign In</Heading>
+            <Flex direction="column" gap="1">
+              <Text as="label" htmlFor="username" weight="bold">
+                Username
+              </Text>
+              <TextField.Root
+                placeholder="Enter your username"
+                id="username"
+                {...register('username', { required: true })}
+                disabled={loading}
+              />
+            </Flex>
+            <Flex direction="column" gap="1">
+              <Text as="label" htmlFor="password" weight="bold">
+                Password
+              </Text>
+              <TextField.Root
+                placeholder="Enter your password"
+                id="password"
+                type="password"
+                {...register('password', { required: true })}
+                disabled={loading}
+              />
+            </Flex>
+            <Flex justify="end">
+              <Button type="submit" disabled={loading}>
+                Sign In
+              </Button>
+            </Flex>
           </Flex>
-          <Flex direction="column" gap="1">
-            <Text as="label" htmlFor="password" weight="bold">
-              Password
-            </Text>
-            <TextField.Root placeholder="Enter your password" id="password" type="password" />
-          </Flex>
-          <Flex justify="end">
-            <Button>Sign In</Button>
-          </Flex>
-        </Flex>
+        </form>
       </Card>
     </Container>
   );

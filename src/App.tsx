@@ -1,15 +1,18 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard.tsx';
-import SignIn from './components/SignIn.tsx';
+import { WrapperComponent } from './components/WrapperComponent.tsx';
+import { NotFound } from './components/NotFound.tsx';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" Component={Dashboard} />
-        <Route path="/login" Component={SignIn} />
-      </Routes>
-    </BrowserRouter>
+    <WrapperComponent>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </WrapperComponent>
   );
 }
 
