@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialStatue = { width: 0 };
+const initialStatue = { width: window.innerWidth };
 
 const appSlice = createSlice({
   initialState: initialStatue,
