@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../core/api.ts';
-import { ENDPOINTS } from '../../core/endpoints.ts';
+import { ENDPOINTS } from '../../core/constants.ts';
 
 export const signInAction = createAsyncThunk(
   'POST.SIGN_IN',

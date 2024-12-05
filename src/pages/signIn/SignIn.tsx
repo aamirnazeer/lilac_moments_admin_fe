@@ -1,4 +1,4 @@
-import { Text, Card, Flex, Heading, TextField, Button, Container } from '@radix-ui/themes';
+import { Text, Card, Flex, Heading, TextField, Button, Container, Spinner } from '@radix-ui/themes';
 import { useSelector } from 'react-redux';
 import { signInAction } from '../../store/thunk/authThunk.ts';
 import { RootState, useAppDispatch } from '../../store';
@@ -59,6 +59,7 @@ export default function SignIn() {
             </Flex>
             <Flex justify="end">
               <Button type="submit" disabled={loading}>
+                {loading && <Spinner size="2" />}
                 Sign In
               </Button>
             </Flex>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API } from './env.ts';
-import { ENDPOINTS } from './endpoints.ts';
 import { AxiosRequestConfig } from 'axios';
+import { ENDPOINTS } from './constants.ts';
 
 interface RetryQueueItem {
   resolve: (value?: any) => void;
