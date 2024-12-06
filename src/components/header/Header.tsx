@@ -26,14 +26,10 @@ const Header = () => {
               </Button>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content>
-              {width > BREAK_POINTS.M ? (
+              {width <= BREAK_POINTS.M ? (
                 <>
                   {TABS.map((el) => {
-                    return (
-                      <>
-                        <DropdownMenu.Item>{el.name}</DropdownMenu.Item>
-                      </>
-                    );
+                    return <DropdownMenu.Item>{el.name}</DropdownMenu.Item>;
                   })}
                   <DropdownMenu.Separator />
                 </>

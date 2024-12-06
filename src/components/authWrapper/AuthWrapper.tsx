@@ -38,7 +38,7 @@ export const AuthWrapper = ({ children }: { children: ReactNode }) => {
           <Header />
           <Section p="1" style={{ display: 'flex' }}>
             {width > BREAK_POINTS.M && <Sidebar />}
-            <Box m="1" style={{ backgroundColor: 'pink', width: width < BREAK_POINTS.M ? '100%' : '85%' }} p="1">
+            <Box m="1" style={{ backgroundColor: 'pink', width: width <= BREAK_POINTS.M ? '100%' : '85%' }} p="1">
               {children}
             </Box>
           </Section>
